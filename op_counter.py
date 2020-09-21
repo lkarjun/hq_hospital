@@ -4,7 +4,7 @@ import datetime
 class Labeled_Detail(NamedTuple):
 
     'details needed for op tickets'
-
+    Op_number: str
     Name: str
     Age: str
     Place: str
@@ -20,12 +20,13 @@ class OpCounter:
     def __init__(self) -> None:
         #to store all patients detail
         self.patients: List = []
+        self.op_number: int = 100
     
     def add_patient(self, **details) -> None:
         #appending patients details
-        add_details = Labeled_Detail(details['name'], details['age'],\
-                                     details['place'], self.today,\
-                                     details['specialist'], details['doctor'])
+        add_details = Labeled_Detail(self.op_number,details['name'], details['age'],\
+                                     details['place'], self.today,details['specialist'], details['doctor'])
+        self.op_number += 1
         self.patients.append(add_details)
 
     def display_appointments(self) -> List:
@@ -40,5 +41,5 @@ if __name__ == '__main__':
     a.add_patient(name='Arun', age='9', place='kochi', specialist='Eye', doctor='Dr Rajesh')
     detail = a.display_appointments()
     for i in detail:
-        print(f'Name is {i.Name}\nage is {i.Age},\nPlace is {i.Place},\nspecialis is {i.Specialist},\ndoctor is {i.Doctor_name}')
+        print(f'Op Number is {i.Op_number}\nName is {i.Name}\nage is {i.Age},\nPlace is {i.Place},\nspecialis is {i.Specialist},\ndoctor is {i.Doctor_name}')
         print('-'*20)
