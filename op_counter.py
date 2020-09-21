@@ -1,4 +1,5 @@
-from typing import NamedTuple, List
+from typing import NamedTuple, List, Dict
+from collections import defaultdict
 import datetime
 
 
@@ -36,6 +37,30 @@ class OpCounter:
         # returns List of patients
         return self.patients
 
+    def print_op_receipt(self) -> None:
+        '''Ouputs Op tickets'''
+        last_patient: Labeled_Detail = self.patients[-1]
+        detail = f'-----------------------------------\
+                 \n Date:       {last_patient.Date}\
+                 \n Op Number:  {last_patient.Op_number}\
+                 \n Name:       {last_patient.Name}\
+                 \n Age:        {last_patient.Age},\
+                 \n Specialist: {last_patient.Specialist},\
+                 \n Doctor:     {last_patient.Doctor_name}\
+                   \n-----------------------------------'
+        print(detail)
+
+    def total_patients(self) -> List[str]:
+        '''return number of patients for doctors'''
+        counting: Dict[str, int] = defaultdict(int)
+        patients: List[Labeled_Detail] = self.display_appointments()
+        for i in patients:
+            if i.Doctor_name in counting:
+                counting[i.Doctor_name] += 1
+            else:
+                counting[i.Doctor_name] = 1
+        return counting
+
 
 # Debuging
 if __name__ == '__main__':
@@ -46,9 +71,4 @@ if __name__ == '__main__':
     a.add_patient(name='Arun', age='9', place='kochi',
                   specialist='Eye', doctor='Dr Rajesh')
 
-    detail = a.display_appointments()
-    for i in detail:
-        print(f'Op Number is {i.Op_number}\nName is {i.Name}\nage is {i.Age},\
-                \nPlace is {i.Place},\nspecialis is {i.Specialist},\
-                \ndoctor is {i.Doctor_name}')
-        print('-'*20)
+    a.print_op_receipt()
