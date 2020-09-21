@@ -50,7 +50,7 @@ class OpCounter:
                    \n-----------------------------------'
         print(detail)
 
-    def total_patients(self) -> List[str]:
+    def total_patients(self, doctor: str) -> List[str]:
         '''return number of patients for doctors'''
         counting: Dict[str, int] = defaultdict(int)
         patients: List[Labeled_Detail] = self.display_appointments()
@@ -59,7 +59,7 @@ class OpCounter:
                 counting[i.Doctor_name] += 1
             else:
                 counting[i.Doctor_name] = 1
-        return counting
+        return counting[doctor]
 
 
 # Debuging
@@ -71,4 +71,12 @@ if __name__ == '__main__':
     a.add_patient(name='Arun', age='9', place='kochi',
                   specialist='Eye', doctor='Dr Rajesh')
 
+    a.add_patient(name='Gopal', age='29', place='palakkad',
+                  specialist='Eye', doctor='Dr Rajesh')
+
+    a.add_patient(name='Agitha', age='9', place='kannur',
+                  specialist='Eye', doctor='Dr Rajesh')
+
     a.print_op_receipt()
+
+    print(a.total_patients('Dr Rajesh'))
