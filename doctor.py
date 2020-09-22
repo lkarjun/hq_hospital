@@ -9,3 +9,11 @@ class Doctor(OpCounter):
         self.doctor = doctor  # Further process dr name is needed
         self.appointments = OpCounter.display_appointments(obj)
 
+    def total_patients(self) -> Tuple[int, Dict]:
+        # Include patients details for respective doctors
+        patients = [i for i in self.appointments
+                    if i.Doctor_name == self.doctor]
+
+        return len(patients), {patient.Op_number: patient.Name
+                               for patient in patients
+                               if patient.Doctor_name == self.doctor}
