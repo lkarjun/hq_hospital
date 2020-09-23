@@ -79,4 +79,4 @@ if __name__ == '__main__':
 
     a.print_op_receipt()
 
-    print(a.total_patients('Dr Rajesh'))
+    print(a.total_patients())
