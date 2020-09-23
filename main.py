@@ -17,12 +17,17 @@ def patient_view(name: str) -> Tuple[int, Dict]:
     return dr.total_patients()
 
 
+def nex_patient(name: str) -> Tuple[str, int]:
+    dr = Doctor(name, reception)
+    return dr.next_patient()
+
+
 if __name__ == '__main__':
     add(name='Lal', age='19', place='calicut',
         specialist='Heart', doctor='V Venugopal')
 
     add(name='Arun', age='9', place='kochi',
-        specialist='Eye', doctor='Dr Rajesh')
+        specialist='Eye', doctor='Dr Venugopal')
 
     add(name='Gopal', age='29', place='palakkad',
         specialist='Eye', doctor='Dr Rajesh')
@@ -32,3 +37,9 @@ if __name__ == '__main__':
 
     add(name='Aruthathi', age='4', place='Ernakkulam',
         specialist='Eye', doctor='Dr Rajesh')
+
+    print(patient_view('Dr Venugopal'))
+    print(nex_patient('Dr Venugopal'))
+    print()
+    print(patient_view('Dr Rajesh'))
+    print(nex_patient('Dr Rajesh'))
