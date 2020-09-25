@@ -3,6 +3,8 @@ from op_counter import OpCounter
 from doctor import Doctor
 
 reception = OpCounter()
+dr = Doctor()
+dr.set_obj(reception)
 
 
 def add(name: str, age: int, place: str, specialist: str,
@@ -13,12 +15,14 @@ def add(name: str, age: int, place: str, specialist: str,
 
 
 def patient_view(name: str) -> Tuple[int, Dict]:
-    dr = Doctor(name, reception)
+    '''return Total patients'''
+    dr.set_doctor_name(name)
     return dr.total_patients()
 
 
 def nex_patient(name: str) -> Tuple[str, int]:
-    dr = Doctor(name, reception)
+    '''return Next patient detial'''
+    dr.set_doctor_name(name)
     return dr.next_patient()
 
 
