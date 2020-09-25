@@ -1,5 +1,5 @@
 from typing import Dict, List, Tuple
-from op_counter import Labeled_Detail, OpCounter
+from op_counter import OpCounter
 from pprint import pprint
 
 
