@@ -8,10 +8,10 @@ dr.set_obj(reception)
 
 
 def add(name: str, age: int, place: str, specialist: str,
-        doctor: str) -> None:
+        doctor: str, email: str) -> None:
 
     reception.add_patient(name=name, age=age, place=place,
-                          specialist=specialist, doctor=doctor)
+                          specialist=specialist, doctor=doctor, email=email)
 
 
 def patient_view(name: str) -> Tuple[int, Dict]:
@@ -28,19 +28,24 @@ def nex_patient(name: str) -> Tuple[str, int]:
 
 if __name__ == '__main__':
     add(name='Lal', age='19', place='calicut',
-        specialist='Heart', doctor='V Venugopal')
+        specialist='Heart', doctor='V Venugopal',
+        email='lalu@gmail.com')
 
     add(name='Arun', age='9', place='kochi',
-        specialist='Eye', doctor='Dr Venugopal')
+        specialist='Eye', doctor='Dr Venugopal',
+        email='arun@gmail.com')
 
     add(name='Gopal', age='29', place='palakkad',
-        specialist='Eye', doctor='Dr Rajesh')
+        specialist='Eye', doctor='Dr Rajesh',
+        email='gopal@gmail.com')
 
     add(name='Agitha', age='9', place='kannur',
-        specialist='Eye', doctor='Dr Rajesh')
+        specialist='Eye', doctor='Dr Rajesh',
+        email='agitha@gmail.com')
 
     add(name='Aruthathi', age='4', place='Ernakkulam',
-        specialist='Eye', doctor='Dr Rajesh')
+        specialist='Eye', doctor='Dr Rajesh',
+        email='aruthathi@gmail.com')
 
     print(patient_view('Dr Venugopal'))
     print(nex_patient('Dr Venugopal'))

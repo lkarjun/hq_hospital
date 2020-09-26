@@ -13,6 +13,7 @@ class Labeled_Detail(NamedTuple):
     Date: datetime.date
     Specialist: str
     Doctor_name: str
+    Patient_email: str
 
 
 class OpCounter:
@@ -29,7 +30,7 @@ class OpCounter:
         add_details = Labeled_Detail(self.op_number, details['name'],
                                      details['age'], details['place'],
                                      self.today, details['specialist'],
-                                     details['doctor'])
+                                     details['doctor'], details['email'])
         self.op_number += 1
         self.patients.append(add_details)
 
@@ -47,6 +48,7 @@ class OpCounter:
                  \n Age:        {last_patient.Age},\
                  \n Specialist: {last_patient.Specialist},\
                  \n Doctor:     {last_patient.Doctor_name}\
+                 \n Email:      {last_patient.Patient_email}\
                    \n-----------------------------------'
         print(detail)
 
@@ -66,16 +68,20 @@ class OpCounter:
 if __name__ == '__main__':
     a = OpCounter()
     a.add_patient(name='Lal', age='19', place='calicut',
-                  specialist='Heart', doctor='V Venugopal')
+                  specialist='Heart', doctor='V Venugopal',
+                  email='lalu@gmail.com')
 
     a.add_patient(name='Arun', age='9', place='kochi',
-                  specialist='Eye', doctor='Dr Rajesh')
+                  specialist='Eye', doctor='Dr Rajesh',
+                  email='arun@gmail.com')
 
     a.add_patient(name='Gopal', age='29', place='palakkad',
-                  specialist='Eye', doctor='Dr Rajesh')
+                  specialist='Eye', doctor='Dr Rajesh',
+                  email='gopal@gmail.com')
 
     a.add_patient(name='Agitha', age='9', place='kannur',
-                  specialist='Eye', doctor='Dr Rajesh')
+                  specialist='Eye', doctor='Dr Rajesh',
+                  email='agitha@gmail.com')
 
     a.print_op_receipt()
 
