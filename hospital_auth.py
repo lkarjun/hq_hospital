@@ -1,5 +1,4 @@
-from io import open_code
-from cryptography.fernet import Fernet, fernet
+from cryptography.fernet import Fernet
 from typing import Union
 import yaml
 
@@ -39,3 +38,9 @@ class Securing:
         decrypted_data = f.decrypt(encrypted_data)
         with open(fileName, 'wb') as file:
             file.write(decrypted_data)
+
+if __name__ == '__main__':
+    s = Securing()
+    s.genKey
+    s.encrypt_data()
+    s.decrypt_data()
