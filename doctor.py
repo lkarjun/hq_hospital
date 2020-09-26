@@ -35,6 +35,9 @@ class Doctor(OpCounter):
             return 'Doctor You please take rest. There is no patients for you.'
         return patients[0].Name, patients[0].Op_number
 
+    def medical(self) -> List[Labeled_Detail]:
+        pass
+
     def set_doctor_name(self, name: str) -> None:
         # sets doctor name
         self.doctor: str = name
