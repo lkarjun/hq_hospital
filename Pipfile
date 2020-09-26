@@ -12,6 +12,7 @@ pep8 = "*"
 pylint = "*"
 cryptography = "*"
 pycodestyle = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.8"
