@@ -1,3 +1,4 @@
+from os import scandir
 from typing import Dict, Tuple
 from op_counter import OpCounter
 from doctor import Doctor
@@ -25,6 +26,9 @@ def nex_patient(name: str) -> Tuple[str, int]:
     dr.set_doctor_name(name)
     return dr.next_patient()
 
+def add_next_patient(name: str):
+    dr.set_doctor_name(name)
+    dr.add_current_patient()
 
 if __name__ == '__main__':
     add(name='Lal', age='19', place='calicut',
