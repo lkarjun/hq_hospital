@@ -1,7 +1,12 @@
 from os import curdir
 from typing import Dict, List, NamedTuple, Tuple
 from op_counter import Labeled_Detail, OpCounter
-from pprint import pprint
+
+
+class DoctorRemark(NamedTuple):
+    Op_number: int
+    Op_detail: Labeled_Detail
+    Remark: str
 
 
 class Doctor(OpCounter):
@@ -12,6 +17,7 @@ class Doctor(OpCounter):
         self.doctor = 'Admin'  # Further process dr name is needed
         self.appointed_patients: List = []  # to keep track appointed patients
         self.current_patient: int = None  # Current patient detail.
+        self.remark: List[DoctorRemark] = []  # Doctor remarks.
 
     def appointments(self) -> List[Labeled_Detail]:
         '''it returns total appointments '''
@@ -46,12 +52,21 @@ class Doctor(OpCounter):
             self.appointed_patients.append(self.current_patient[1])
         except:
             return 'There is no patient'
-    def medical(self) -> List[Labeled_Detail]:
-        pass
+
+    def medical(self, remark: str) -> None:
+        '''append to remark List with Object "DoctorRemark"'''
+        _, opNumber = self.current_patient
+        self.remark.append(DoctorRemark(opNumber, self.get_patient_opobjec(), remark))
 
     def set_doctor_name(self, name: str) -> None:
         # sets doctor name
         self.doctor: str = name
+
+    def get_patient_opobjec(self) -> Labeled_Detail:
+        _,OpNumber = self.current_patient
+        for i in OpCounter.display_appointments(self.receiption_obj):
+            if i.Op_number == OpNumber:
+                return i 
 
     @classmethod
     def set_obj(cls, obj: OpCounter) -> None:
@@ -86,10 +101,16 @@ if __name__ == '__main__':
         specialist='Eye', doctor='Dr Rajesh',
         email='aruthathi@gmail.com')
 
-    for _ in range(len(dr.appointments())):
+    values = ['Not so serious. Medicine Parasitamole', 'Normal bp', 'Imediate blood test',\
+              'Do excerise', 'Do eye focusing excerise']
+
+    for i in range(len(dr.appointments())):
         dr.add_current_patient()
+        dr.medical(values[i])
         print('--------------------------------------')
-        print(dr.current_patient)
-        print(dr.appointed_patients)
+        print('current patient =', dr.current_patient)
+        print('appointed patients op =', dr.appointed_patients)
+        print('Remarks\n')
+        print(dr.remark[i])
         print('--------------------------------------')
 
