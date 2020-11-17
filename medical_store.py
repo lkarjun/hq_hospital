@@ -51,7 +51,7 @@ class Medical(Doctor):
                                Date = Receipt.Op_detail.Date,
                                Specialist = Receipt.Op_detail.Specialist,
                                Patient_email = Receipt.Op_detail.Patient_email)
-        
+        self.Receipt_Number += 1
         self.Report.append(report)
 
 
@@ -95,7 +95,13 @@ if __name__ == '__main__':
         dr.remark[i]
         # print('--------------------------------------')
     print("_____________");print()
+
     medicine__ = Medical(dr)
-    medicine__.next_op()
     medicine__.create_medicine_report()
-    print(medicine__.Report)
+    medicine__.medicine_received()
+
+
+    medicine__.create_medicine_report()
+    medicine__.medicine_received()
+
+    print(medicine__.Report);print()
